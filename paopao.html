@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://data.wiyun.com/finscn/lite/demo.html -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="-1">
+        <meta http-equiv="Cache-Control" content="no-cache">
+
+        <title>My first Game</title>
+
+        <style type="text/css">
+            body {
+                border: none 0px;
+                margin: 0px;
+                padding: 0px;
+                font-size: 16px;
+                background-color: #f3f3f3;
+            }
+
+            canvas {
+                border: 1px solid #00f;
+            }
+
+            #statebar {
+                font-size: 24px;
+                top: 500px;
+                left: 280px;
+            }
+            #fs{
+            	margin : auto;
+            	/*position: absolute;*/
+            }
+			heroes{
+				position:absolute;
+				margin-top:-400px;
+				padding-left:20px;
+				float: left;
+			}
+        </style>
+
+        <script type="text/javascript" src="./js/base.js"></script>
+        <script type="text/javascript" src="./js/animation.js"></script>
+        <script type="text/javascript" src="./js/bubble.js"></script>
+        <script type="text/javascript" src="./js/game.js"></script>
+        <script type="text/javascript" src="./js/example.js"></script>
+        <script type="text/javascript" src="./js/dialog.js"></script>
+        <script type="text/javascript">
+            var ImgCache = loadImage([{
+                id : "player",
+                url : "./images/player.png"
+            }, {
+                id : "enemy",
+                url : "./images/enemy.png"
+            }, {
+                id : "bg",
+                url : "./images/bg.png"
+            }]);
+
+            function init() {
+                initEvent();
+                myGame.init();
+                //myGame.start();
+            }
+function full(){
+    var c = $("fs");
+    c.webkitRequestFullScreen();
+    //alert(window.outerWidth);
+	width = window.outerWidth;
+	height =window.outerHeight-40;
+	
+	myGame.container.style.width = width + "px";
+    myGame.container.style.height = height + "px";
+	myGame.canvas.width = width;
+    myGame.canvas.height = height;
+    //myGame.FPS = 60;
+    //myGame._sleep=Math.floor(1000 / myGame.FPS);
+    for(var i=0;i<10;i++){
+    	myGame.addBubble();
+    }
+	var a=1;
+}
+        </script>
+
+        </head>
+    <body onload="init()" screen_capture_injected="true">
+    	<explain><p>点击泡泡就会融合，泡泡里面的数字就会相加，当相加的数字等于某一个数就会消去并加上相应的分数，现在你可以设置这个数等于多少。请在下框中输入数字，请输入大于等于6小于等于100的数</p></a></explain>
+    	<input type="number"  id="winscore" min="6" max="100" value="6" />
+    	<input type="button" value="开始" onclick="myGame.init()" ></input>
+    	<div id ="fs">
+	        <div id="gamebox" style="width: 600px; margin:auto;height: 400px;padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+	            <canvas id="c" ></canvas>
+	        </div>
+	        <div id="statebar">
+	            TimeRemain : <span id="timenum">1.4</span>
+	            Score : <span id="score">1.4</span>
+	        </div>
+        </div>
+        <heroes>
+        	<h1>英雄榜</h1>
+        	<p>名次  分数 姓名</p>
+        	<p id="1"></p>
+        	<p id="2"></p>
+        	<p id="3"></p>
+        	<p id="4"></p>
+        	<p id="5"></p>
+<!--         	<ul>
+        		<li id="1">asd</li>
+        		<li id="2">asd</li>
+        		<li id="3">asd</li>
+        		<li id="4"></li>
+        		<li id="5"></li>
+        	</ul> -->
+        </heroes>
+        
+        <input type="button" value="全屏"  onclick="full()"/>
+<!--         <input type="button" value="test"  onclick="test()"/> -->
+    </body>
+</html>
